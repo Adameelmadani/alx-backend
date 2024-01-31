@@ -40,4 +40,25 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-            pass
+        """
+        Get_hyper_index function
+        """
+        length = len(self.dataset())
+        assert index is not None
+        assert index < length
+        my_dict = {}
+        my_dict["index"] = index
+        datas = []
+        while len(datas) != page_size:
+            if index >= length:
+                datas = []
+                break
+            t_data = self.indexed_dataset().get(index)
+            if t_data is None:
+                continue
+            datas.append(t_data)
+            index += 1
+        my_dict["next_index"] = index
+        my_dict["page_size"] = page_size
+        my_dict["data"] = datas
+        return my_dict
