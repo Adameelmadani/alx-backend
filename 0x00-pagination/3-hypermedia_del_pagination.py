@@ -5,7 +5,7 @@ Deletion-resilient hypermedia pagination
 
 import csv
 import math
-from typing import List
+from typing import List, Dict
 
 
 class Server:
@@ -54,11 +54,11 @@ class Server:
                 datas = []
                 break
             t_data = self.indexed_dataset().get(index)
+            index += 1
             if t_data is None:
                 continue
             datas.append(t_data)
-            index += 1
-        my_dict["next_index"] = index
-        my_dict["page_size"] = page_size
         my_dict["data"] = datas
+        my_dict["page_size"] = page_size
+        my_dict["next_index"] = index
         return my_dict
