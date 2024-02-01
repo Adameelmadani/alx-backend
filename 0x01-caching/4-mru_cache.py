@@ -27,13 +27,13 @@ class MRUCache(BaseCaching):
             self.cache_data[key] = item
         else:
             return
-        if key in self.lru_list:
-            self.lru_list.remove(key)
+        if key in self.mru_list:
+            self.mru_list.remove(key)
         elif len(self.cache_data) > super().MAX_ITEMS:
-            print("DISCARD:", self.lru_list[-1])
-            self.cache_data.pop(self.lru_list[-1])
-            self.lru_list.pop(-1)
-        self.lru_list.append(key)
+            print("DISCARD:", self.mru_list[-1])
+            self.cache_data.pop(self.mru_list[-1])
+            self.mru_list.pop(-1)
+        self.mru_list.append(key)
 
     def get(self, key):
         """
