@@ -14,13 +14,12 @@ class Config:
     config class for flask application
     """
     LANGUAGES = ["en", "fr"]
-    TIMEZONES = ["UTC"]
 
 
 app = Flask(__name__)
 babel = Babel(app)
 app.config['BABEL_DEFAULT_LOCALE'] = Config.LANGUAGES[0]
-app.config['BABEL_DEFAULT_TIMEZONE'] = Config.TIMEZONES[0]
+app.config['BABEL_DEFAULT_TIMEZONE'] = "UTC"
 
 
 @app.route('/')
