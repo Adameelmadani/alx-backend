@@ -13,6 +13,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
+    """
+    This is the root
+    """
     return render_template('0-index.html')
 
 
